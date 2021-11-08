@@ -1,1 +1,1 @@
-# Anime-Quotes-API
+# Anime Quotes API
