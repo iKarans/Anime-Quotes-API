@@ -1,3 +1,3 @@
 # Anime Quotes API
 
-![Calculator Project](https://github.com/iKarans/Anime-Quotes-API/blob/main/Anime-Quotes.png)
+![Anime Quotes API Project](https://github.com/iKarans/Anime-Quotes-API/blob/master/Anime-Quotes.png)
