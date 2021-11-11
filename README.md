@@ -23,4 +23,4 @@ An Anime Quotes API built from scratch using Java, SQL and the Spring framework.
 
 ## Improvements / To-Dos
 - [ ] Add more quotes and categories.
-- [ ] Get it hosted using Google cloud.
+- [ ] Get it hosted using Google Cloud.
