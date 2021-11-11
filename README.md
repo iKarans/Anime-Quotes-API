@@ -22,5 +22,5 @@ An Anime Quotes API built from scratch using Java, SQL and the Spring framework.
 * ```http://localhost:8080/quotes/{id}``` to update and delete a quote.
 
 ## Improvements / To-Dos
-* Add more quotes and categories.
-* Get it hosted using Google cloud.
+[ ] Add more quotes and categories.
+[ ] Get it hosted using Google cloud.
