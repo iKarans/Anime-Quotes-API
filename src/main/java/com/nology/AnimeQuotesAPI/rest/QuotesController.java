@@ -24,8 +24,14 @@ public class QuotesController {
     private IQuotesRepository quotesRepo;
 
     @GetMapping("/quotes")
-    public ResponseEntity<List<Quote>> getQuotesByCategory(@RequestParam String search) {
-        return ResponseEntity.status(HttpStatus.OK).body(quotesRepo.findAllByCategory(search));
+    public ResponseEntity<List<Quote>> getQuotesByCategory(@RequestParam(required = false) String category, @RequestParam(required = false) String animeName, @RequestParam(required = false) String characterName) {
+        if(category != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(quotesRepo.findAllByCategory(category));
+        } else if (animeName != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(quotesRepo.findAllByAnimeName(animeName));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(quotesRepo.findAllByCharacterName(characterName));
+
     }
 
     @GetMapping("/quotes/all")
