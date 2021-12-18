@@ -1,4 +1,4 @@
-package com.nology.AnimeQuotesAPI.entity;
+package com.nology.AnimeQuotesAPI.Quote;
 
 import org.springframework.validation.annotation.Validated;
 
@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Validated
+@Table
 public class Quote {
 
     @Id

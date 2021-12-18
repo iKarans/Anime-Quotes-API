@@ -1,4 +1,4 @@
-package com.nology.AnimeQuotesAPI.exceptions;
+package com.nology.AnimeQuotesAPI.Quote.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

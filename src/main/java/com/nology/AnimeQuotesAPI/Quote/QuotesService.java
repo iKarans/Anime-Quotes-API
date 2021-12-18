@@ -1,52 +1,47 @@
-package com.nology.AnimeQuotesAPI.rest;
+package com.nology.AnimeQuotesAPI.Quote;
 
-import com.nology.AnimeQuotesAPI.entity.Message;
-import com.nology.AnimeQuotesAPI.entity.Quote;
-import com.nology.AnimeQuotesAPI.exceptions.InvalidRequestException;
-import com.nology.AnimeQuotesAPI.exceptions.ResourceNotFoundException;
-import com.nology.AnimeQuotesAPI.repository.IQuotesRepository;
+import com.nology.AnimeQuotesAPI.Quote.exceptions.InvalidRequestException;
+import com.nology.AnimeQuotesAPI.Quote.exceptions.Message;
+import com.nology.AnimeQuotesAPI.Quote.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
-@CrossOrigin
-@RestController
-public class QuotesController {
+@Service
+public class QuotesService {
 
-    @Autowired
     private IQuotesRepository quotesRepo;
 
-    @GetMapping("/quotes")
-    public ResponseEntity<List<Quote>> getQuotesByCategory(@RequestParam(required = false) String category, @RequestParam(required = false) String animeName, @RequestParam(required = false) String characterName) {
+    @Autowired
+    public QuotesService(IQuotesRepository quotesRepo) {
+        this.quotesRepo = quotesRepo;
+    }
+
+    public ResponseEntity<List<Quote>> getQuotesByParameter(String category, String animeName, String characterName) {
         if(category != null) {
             return ResponseEntity.status(HttpStatus.OK).body(quotesRepo.findAllByCategory(category));
         } else if (animeName != null) {
             return ResponseEntity.status(HttpStatus.OK).body(quotesRepo.findAllByAnimeName(animeName));
         }
         return ResponseEntity.status(HttpStatus.OK).body(quotesRepo.findAllByCharacterName(characterName));
-
     }
 
-    @GetMapping("/quotes/all")
     public ResponseEntity<List<Quote>> getAllQuotes() {
         return ResponseEntity.status(HttpStatus.OK).body(quotesRepo.findAll());
     }
 
-    @GetMapping("/quotes/{id}")
-    public ResponseEntity<Quote> getQuoteById(@PathVariable int id) throws ResourceNotFoundException {
+    public ResponseEntity<Quote> getQuoteById(int id) throws ResourceNotFoundException {
         handleResourceNotFound(id);
         return ResponseEntity.status(HttpStatus.OK).body(quotesRepo.findById(id).orElse(null));
     }
 
-    @PostMapping("/quotes")
-    public ResponseEntity<Quote> addQuote(@RequestBody Quote quote) throws InvalidRequestException {
+    public ResponseEntity<Quote> addQuote(Quote quote) throws InvalidRequestException {
         try {
             Quote createdQuote = quotesRepo.save(quote);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdQuote);
@@ -55,8 +50,7 @@ public class QuotesController {
         }
     }
 
-    @PutMapping("quotes/{id}")
-    public ResponseEntity<Quote> updateQuoteById(@PathVariable int id, @RequestBody Quote quote) throws ResourceNotFoundException, InvalidRequestException {
+    public ResponseEntity<Quote> updateQuoteById(int id, Quote quote) throws ResourceNotFoundException, InvalidRequestException {
         handleResourceNotFound(id);
         try {
             quote.setId(id);
@@ -65,11 +59,9 @@ public class QuotesController {
         } catch (Exception e) {
             throw new InvalidRequestException("Incorrect data supplied");
         }
-
     }
 
-    @DeleteMapping("quotes/{id}")
-    public ResponseEntity<Message> deleteById(@PathVariable int id) throws ResourceNotFoundException {
+    public ResponseEntity<Message> deleteById(int id) throws ResourceNotFoundException {
         handleResourceNotFound(id);
         quotesRepo.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body(new Message("The quote with id " + id + " has been deleted"));
@@ -79,4 +71,6 @@ public class QuotesController {
         Quote existingQuote = quotesRepo.findById(id).orElse(null);
         if (existingQuote == null) throw new ResourceNotFoundException("Quote with ID " + id + " not found :(");
     }
+
+
 }

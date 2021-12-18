@@ -1,4 +1,4 @@
-package com.nology.AnimeQuotesAPI.entity;
+package com.nology.AnimeQuotesAPI.Quote.exceptions;
 
 public class Message {
     private String message;
