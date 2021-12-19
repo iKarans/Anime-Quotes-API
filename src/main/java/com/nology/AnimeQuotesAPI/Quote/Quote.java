@@ -70,5 +70,16 @@ public class Quote {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "Quote{" +
+                "id=" + id +
+                ", characterName='" + characterName + '\'' +
+                ", quote='" + quote + '\'' +
+                ", animeName='" + animeName + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }
 
