@@ -30,7 +30,7 @@ class IQuotesRepositoryTest {
     }
 
     @Test
-    void findAllByCategory() {
+    void canFindAllByCategory() {
         List<Quote> actual = underTest.findAllByCategory("Cruel World");
         assertThat(actual.get(0))
                 .usingRecursiveComparison()
@@ -38,7 +38,7 @@ class IQuotesRepositoryTest {
     }
 
     @Test
-    void findAllByAnimeName() {
+    void canFindAllByAnimeName() {
         List<Quote> actual = underTest.findAllByAnimeName("AOT");
         assertThat(actual.get(0))
                 .usingRecursiveComparison()
@@ -46,7 +46,7 @@ class IQuotesRepositoryTest {
     }
 
     @Test
-    void findAllByCharacterName() {
+    void canFindAllByCharacterName() {
         List<Quote> actual = underTest.findAllByCharacterName("Eren");
         assertThat(actual.get(0))
                 .usingRecursiveComparison()

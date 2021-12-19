@@ -29,7 +29,7 @@ class QuotesServiceTest {
 
 
     @Test
-    void getQuotesByParameter() {
+    void canGetQuotesByParameter() {
         underTest.getQuotesByParameter("cruel world", null, null);
         ArgumentCaptor<String> quoteArgumentCaptor = ArgumentCaptor.forClass(String.class);
         verify(quotesRepo).findAllByCategory(quoteArgumentCaptor.capture());
@@ -38,14 +38,13 @@ class QuotesServiceTest {
     }
 
     @Test
-    void getAllQuotes() {
+    void canGetAllQuotes() {
         underTest.getAllQuotes();
         verify(quotesRepo).findAll();
-
     }
 
     @Test
-    void getQuoteById() throws ResourceNotFoundException {
+    void willThrowErrorWhenCannotGetId() throws ResourceNotFoundException {
 //        Quote quote = new Quote(1, "Eren", "Kill", "AOT", "Cruel World");
 //        quotesRepo.save(quote);
 //        underTest.getQuoteById(1);
@@ -59,7 +58,7 @@ class QuotesServiceTest {
     }
 
     @Test
-    void addQuote() throws InvalidRequestException {
+    void canAddQuote() throws InvalidRequestException {
         Quote quote = new Quote(1, "Eren", "Kill", "AOT", "Cruel World");
         underTest.addQuote(quote);
         ArgumentCaptor<Quote> quoteArgumentCaptor = ArgumentCaptor.forClass(Quote.class);
@@ -70,7 +69,7 @@ class QuotesServiceTest {
     }
 
     @Test
-    void updateQuoteById() throws InvalidRequestException, ResourceNotFoundException {
+    void willThrowErrorWhenCannotUpdateQuote() throws InvalidRequestException, ResourceNotFoundException {
 //        Quote quote = new Quote(1, "Eren", "Kill", "AOT", "Cruel World");
 //        quotesRepo.save(quote);
 //        underTest.updateQuoteById(1, quote);
@@ -84,7 +83,7 @@ class QuotesServiceTest {
     }
 
     @Test
-    void deleteById() throws ResourceNotFoundException {
+    void willThrowErrorWhenCannotDeleteQuote() throws ResourceNotFoundException {
 //        Quote quote = new Quote(1, "Eren", "Kill", "AOT", "Cruel World");
 //        quotesRepo.save(quote);
 //        underTest.deleteById(1);
