@@ -4,7 +4,9 @@
 
 ## Introduction
 
-An Anime Quotes API built from scratch using Java, SQL and the Spring framework. The quotes are stored on a mySQL database. Each Quote has five attributes: id, Anime Name, Character Name, Category and the actual quote. Currently, there are three categories: motivation, cruel world, portfolio. 
+An Anime Quotes API built from scratch using Java, SQL and the Spring framework. The quotes are stored on a mySQL database. Each Quote has five attributes: id, Anime Name, Character Name, Category and the actual quote. Currently, there are three categories: motivation, cruel world, portfolio.
+
+Junit, AssertJ and the in memory h2 database were used for testing the service and repository.
 
 ## LocalHost Root Endpoint
 
