@@ -27,5 +27,5 @@ Junit, AssertJ and the in memory h2 database were used for testing the service a
 
 - [ ] Add more quotes and categories.
 - [ ] Get it hosted using Google Cloud.
-- [x] Junit Testing for repository.
+- [x] Junit Testing for repository (in memory and mocking).
 - [x] Junit Testing for services.
